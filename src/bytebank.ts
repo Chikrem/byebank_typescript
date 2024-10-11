@@ -1,4 +1,4 @@
-let saldo = 30000;
+let saldo = 3000;
 
 const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement;
 if (elementoSaldo != null) {
@@ -12,7 +12,7 @@ elementoFormulario.addEventListener("submit", function(event) {
         alert("Por favor, preencha todos os campos da transação!");
         return;
     }
-    
+
     const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao") as HTMLSelectElement;
     const inputValor = elementoFormulario.querySelector("#valor") as HTMLInputElement;
     const inputData = elementoFormulario.querySelector("#data") as HTMLInputElement;
