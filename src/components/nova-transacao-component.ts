@@ -1,17 +1,11 @@
-import { TipoTransacao } from "../types/TipoTransacao.js";
 import { Transacao } from "../types/Transacao.js";
+import { TipoTransacao } from "../types/TipoTransacao.js";
 import SaldoComponent from "./saldo-component.js";
-import DateComponent from "./date-component.js";
-import  Conta  from "../types/Conta.js";
+import Conta from "../types/Conta.js";
 import ExtratoComponent from "./extrato-component.js";
 
-SaldoComponent.atualizar();
-DateComponent.atualizar();
-
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
-
 elementoFormulario.addEventListener("submit", function (event) {
-
     try {
         event.preventDefault();
         if (!elementoFormulario.checkValidity()) {
@@ -25,22 +19,20 @@ elementoFormulario.addEventListener("submit", function (event) {
 
         let tipoTransacao: TipoTransacao = inputTipoTransacao.value as TipoTransacao;
         let valor: number = inputValor.valueAsNumber;
-        let data: Date = new Date(inputData.value + "T00:00:00");
+        let data: Date = new Date(inputData.value + " 00:00:00");
 
         const novaTransacao: Transacao = {
             tipoTransacao: tipoTransacao,
             valor: valor,
-            data: data
-        };
+            data: data,
+        }
 
         Conta.registrarTransacao(novaTransacao);
         SaldoComponent.atualizar();
-        DateComponent.atualizar();
         ExtratoComponent.atualizar();
         elementoFormulario.reset();
     }
-
-    catch (error) {
-        alert(error.message);
+    catch (erro) {
+        alert(erro.message);
     }
 });

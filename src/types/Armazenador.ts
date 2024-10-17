@@ -1,26 +1,21 @@
 export class Armazenador {
+    private constructor() { }
 
-    constructor() { }
-
-    // Método para salvar um valor no localStorage.
-    static salvarChaveValor(chave: string, valor: any): void {
-        const valorString = JSON.stringify(valor);
-        localStorage.setItem(chave, valorString);
+    static salvar(chave: string, valor: any): void {
+        const valorComoString = JSON.stringify(valor);
+        localStorage.setItem(chave, valorComoString);
     }
 
-    // Método para obter um valor salvo no localStorage.
-    static obterValor(chave: string, reviver?: (this: any, key: string, value: any) => any) {
+    static obter<T>(chave: string, reviver?: (this: any, key: string, value: any) => any): T | null {
+        const valor = localStorage.getItem(chave);
 
-        const valorString = localStorage.getItem(chave);
-
-        if (valorString === null) {
+        if (valor === null) {
             return null;
         }
 
         if (reviver) {
-            return JSON.parse(valorString, reviver);
+            return JSON.parse(valor, reviver) as T
         }
-
-        return JSON.parse(valorString);
+        return JSON.parse(valor) as T
     }
 }
