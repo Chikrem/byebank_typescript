@@ -2,7 +2,7 @@ import { TipoTransacao } from "../types/TipoTransacao.js";
 import { Transacao } from "../types/Transacao.js";
 import SaldoComponent from "./saldo-component.js";
 import DateComponent from "./date-component.js";
-import Conta from "../types/Conta.js";
+import  Conta  from "../types/Conta.js";
 import ExtratoComponent from "./extrato-component.js";
 
 SaldoComponent.atualizar();
